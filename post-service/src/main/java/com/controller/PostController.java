@@ -38,14 +38,6 @@ public class PostController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
-//    @PostMapping
-//    public ResponseEntity<Post> createPost(@RequestBody Post post) {        
-//        UserDTO author = userClient.getUserById(post.getAuthor().getId());
-//        post.setAuthor(author); // Set the author fetched from user-service
-//        Post createdPost = postService.createPost(post);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
-//    }
     
     @PostMapping
     public ResponseEntity<Post> createPost(@RequestBody Post post) {        
