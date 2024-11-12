@@ -63,7 +63,7 @@ public class UserController {
     public ResponseEntity<User> getCurrentUser(Authentication authentication) {
         
 		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-	    User user = userPrincipal.getUser();  // Access the User entity directly from UserPrincipal
+	    User user = userPrincipal.getUser();  
 	    
 	    User userDto = new User();
         userDto.setId(user.getId());
