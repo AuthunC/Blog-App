@@ -28,7 +28,7 @@ public class JwtFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
     	
     	String path = request.getRequestURI();
-        if (path.startsWith("/ws-notifications")) {  // Skip JWT validation for WebSocket endpoint
+        if (path.startsWith("/ws-notifications")) {  
             filterChain.doFilter(request, response);
             return;
         }
@@ -44,7 +44,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 String username = claims.getSubject();
 
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        username, null, null); // Add roles if needed
+                        username, null, null); 
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
