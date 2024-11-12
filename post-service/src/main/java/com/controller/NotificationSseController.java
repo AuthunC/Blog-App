@@ -24,28 +24,10 @@ public class NotificationSseController {
 
     @Autowired
     private NotificationConsumerService notificationConsumerService;
-
-//    // SSE endpoint to stream notifications to the client
-//    @GetMapping(value = "/notifications/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-//    public SseEmitter streamNotifications() {
-//        SseEmitter emitter = new SseEmitter();
-//        new Thread(() -> {
-//            try {
-//                while (true) {
-//                    // Take the notification from the queue and send it to the SSE client
-//                    Notification notification = notificationQueue.take();
-//                    emitter.send(notification, MediaType.APPLICATION_JSON);
-//                }
-//            } catch (IOException | InterruptedException e) {
-//                emitter.completeWithError(e);
-//            }
-//        }).start();
-//        return emitter;
-//    }
     
     @GetMapping(value = "/notifications/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter streamNotifications() {
-        SseEmitter emitter = new SseEmitter(Long.MAX_VALUE); // Set a long timeout
+        SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);
         new Thread(() -> {
             try {
                 while (true) {
@@ -53,8 +35,8 @@ public class NotificationSseController {
                     try {
                         emitter.send(notification, MediaType.APPLICATION_JSON);
                     } catch (IOException e) {
-                        emitter.completeWithError(e); // Complete with error if send fails
-                        break; // Exit loop to prevent further sends on a closed emitter
+                        emitter.completeWithError(e); 
+                        break; 
                     }
                 }
             } catch (InterruptedException e) {
