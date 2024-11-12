@@ -30,45 +30,6 @@ public class JwtFilter extends OncePerRequestFilter{
 	
 	@Autowired
 	private ApplicationContext context;
-
-//	@Override
-//	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-//			throws ServletException, IOException {
-//		
-//		// Bearer uhbiedub3i938y89iuej9893yyibdhj37783 [JWT Token format]
-//		String authHeader = request.getHeader("Authorization");
-//		String token = null;
-//		String username = null;
-//		
-//		if(authHeader != null && authHeader.startsWith("Bearer ")) {
-//			token = authHeader.substring(7);
-//			username = jwtService.getUserName(token);
-//			
-//			// For allowing post-service
-//			Claims claims = jwtService.extractAllClaims(token);
-//	        if ("post-service".equals(username) && "SERVICE".equals(claims.get("role"))) {
-//	            SecurityContextHolder.getContext().setAuthentication(
-//	                new UsernamePasswordAuthenticationToken("post-service", null, List.of(new SimpleGrantedAuthority("ROLE_SERVICE")))
-//	            );
-//	            filterChain.doFilter(request, response);
-//	            return;
-//	        }
-//		}
-//		
-//		if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null) {
-//			UserDetails userDetails = context.getBean(UserService.class).loadUserByUsername(username);
-//			
-//			if(jwtService.validate(token, userDetails)) {
-//				UsernamePasswordAuthenticationToken authToken = 
-//						new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-//				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//				SecurityContextHolder.getContext().setAuthentication(authToken);
-//			}
-//		}
-//		filterChain.doFilter(request, response);
-//	}
-//
-//}
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
